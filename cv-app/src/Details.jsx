@@ -6,8 +6,7 @@ Details should return a whole form, with inputs in
 REMEMBER PROPS*/
 import { useState } from "react";
 import "./App.css";
-import Input from "./Input";
-import person from "./assets/person";
+import person from "./person";
 import DetailsDisplay from "./Display";
 
 function DetailsInput() {
@@ -33,23 +32,45 @@ function DetailsInput() {
     setDetails(updatedPerson);
   }
   return (
-    <>
-      <form action="" className="detailsForm">
-        <h1>
-          Can i REMEMBER how this works, or did I even KNOW in the first place
-        </h1>
-        <Input type="text" onChange={handleFirstNameChange} />
-        <Input type="text" onChange={handleSurnameChange} />
-        <Input type="email" onChange={handleEmailChange} />
-        <Input type="number" onChange={handleNumberChange} />
-      </form>
-      <DetailsDisplay
-        firstName={details.firstName}
-        surName={details.surName}
-        number={details.phoneNumber}
-        email={details.email}
-      />
-    </>
+    <div className="whole">
+      <div className="left">
+        <form action="" className="detailsForm">
+          <legend>Personal Details</legend>
+          <input
+            type="text"
+            className=""
+            placeholder="Steph"
+            onChange={handleFirstNameChange}
+          />
+          <input
+            type="text"
+            className=""
+            placeholder="Torres"
+            onChange={handleSurnameChange}
+          />
+          <input
+            type="tel"
+            className=""
+            placeholder="00000000000"
+            onChange={handleNumberChange}
+          />
+          <input
+            type="email"
+            className=""
+            placeholder="address@example.com"
+            onChange={handleEmailChange}
+          />
+        </form>
+      </div>
+      <div className="right">
+        <DetailsDisplay
+          firstName={details.firstName}
+          surName={details.surName}
+          number={details.phoneNumber}
+          email={details.email}
+        />
+      </div>
+      </div>
   );
 }
 
