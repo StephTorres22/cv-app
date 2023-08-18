@@ -1,0 +1,16 @@
+.forms {
+  padding: 0.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-evenly;
+  border-radius: 5px;
+  border: solid pink 1px;
+  gap: 1rem;
+}
+
+.dates {
+  display: flex;
+  justify-content: space-between;
+}
