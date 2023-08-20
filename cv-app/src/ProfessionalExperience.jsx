@@ -20,7 +20,9 @@ function ProfessionalExperience({
       <form action="" className="forms">
         <legend>
           <u>Professional Experience</u>
-          <span className="arrow"></span>
+          <div className="arrow-background">
+            <span className="arrow"></span>
+          </div>
         </legend>
         <input
           type="text"

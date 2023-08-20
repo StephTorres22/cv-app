@@ -38,11 +38,32 @@
   display: flex;
   justify-content: space-between;
 }
+.arrow-background {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
 .arrow {
+  position: relative;
   max-width: 1rem;
   max-height: 1rem;
-  margin-right: 0.5rem;
-  margin-top: 0.25rem;
+  margin-left: 0.25rem;
+}
+
+.arrow-background:hover .arrow::after {
+  transform: rotate(-120deg);
+  transition: transform 400ms ease-in;
+}
+
+.arrow-background:hover .arrow::before {
+  transform: rotate(120deg);
+  transition: transform 400ms ease-in;
+}
+
+.arrow-background .arrow::after,
+.arrow-background .arrow::before {
+  transition: transform 400ms ease-out;
 }
 
 /* add transition to a parent of .arrow::before .arrow::after
@@ -51,29 +72,23 @@ that way can be on a less specific area, i.e the whole legend or the corner */
 .arrow::before,
 .arrow::after {
   content: "";
-  height: 3px;
+  height: 2px;
   background-color: black;
   position: absolute;
   width: 1rem;
   border-radius: 5px;
   translate: -50%;
   text-align: center;
+  top: 15%;
+  transition: transfrom 300ms ease-out;
 }
 
 .arrow::after {
   rotate: 60deg;
-  translate: -15% 0%;
+  translate: -1%; /* don't get the minus one percent..? */
 }
 .arrow::before {
   rotate: -60deg;
-}
-
-.arrow:hover::after {
-  transform: rotate(-120deg);
-}
-
-.arrow:hover::before {
-  transform: rotate(120deg);
 }
 
 .dates {
