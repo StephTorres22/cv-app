@@ -1,3 +1,4 @@
+import DateSelector from "./components/DateSelector";
 import "./styles/forms.css";
 
 /* eslint-disable react/prop-types */
@@ -15,9 +16,12 @@ function ProfessionalExperience({
   onClick,
 }) {
   return (
-    <div>
+    <div className="forms-container">
       <form action="" className="forms">
-        <legend>Professional Experience</legend>
+        <legend>
+          <u>Professional Experience</u>
+          <span className="arrow"></span>
+        </legend>
         <input
           type="text"
           className=""
@@ -37,6 +41,7 @@ function ProfessionalExperience({
           onChange={handleTitleChange}
         />
         <textarea
+          rows={4}
           style={{ resize: "none" }}
           name=""
           id=""
@@ -45,42 +50,27 @@ function ProfessionalExperience({
           value={description}
           onChange={handleDescriptionChange}
         />
-        <div className="dates">
-          <div>
-            <label htmlFor="startDate">Start Date: </label>
-            <input
-              type="date"
-              name="startDate"
-              id="startDate"
-              value={startDate}
-              onChange={startChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="endDate">End Date: </label>
-            <input
-              type="date"
-              name="endDate"
-              id="endDate"
-              value={endDate}
-              onChange={endChange}
-            />
-          </div>
-        </div>
+        <DateSelector
+          startDate={startDate}
+          endDate={endDate}
+          handleEndChange={endChange}
+          handleStartChange={startChange}
+        />
         <button type="button" onClick={onClick}>
           Add
         </button>
       </form>
       <div className="preview">
         <div className="preview-dates">
-          {startDate !== "" && (
-            <p>
-              {startDate} - {endDate}
-            </p>
-          )}
+          <p>
+            {startDate.toLocaleDateString()} - {endDate.toLocaleDateString()}
+          </p>
         </div>
+        <p>
+          <u>{title}</u>
+        </p>
         <p>{jobPlace}</p>
-        <p>{title}</p>
+
         <p>{description}</p>
       </div>
     </div>

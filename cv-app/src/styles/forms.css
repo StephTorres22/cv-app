@@ -10,6 +10,72 @@
   gap: 1rem;
 }
 
+.forms input,
+.forms textarea {
+  font-size: 1rem;
+  max-width: 15rem;
+  border-radius: 5px;
+  border-style: none;
+  background-color: aliceblue;
+}
+
+.forms textarea {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.forms input:focus,
+.forms textarea:focus {
+  border: none;
+  background-color: rgb(203, 229, 252);
+  outline: none;
+}
+
+.forms input:active {
+  border: none;
+}
+
+.forms legend {
+  display: flex;
+  justify-content: space-between;
+}
+.arrow {
+  max-width: 1rem;
+  max-height: 1rem;
+  margin-right: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+/* add transition to a parent of .arrow::before .arrow::after
+that way can be on a less specific area, i.e the whole legend or the corner */
+
+.arrow::before,
+.arrow::after {
+  content: "";
+  height: 3px;
+  background-color: black;
+  position: absolute;
+  width: 1rem;
+  border-radius: 5px;
+  translate: -50%;
+  text-align: center;
+}
+
+.arrow::after {
+  rotate: 60deg;
+  translate: -15% 0%;
+}
+.arrow::before {
+  rotate: -60deg;
+}
+
+.arrow:hover::after {
+  transform: rotate(-120deg);
+}
+
+.arrow:hover::before {
+  transform: rotate(120deg);
+}
+
 .dates {
   display: flex;
   justify-content: space-between;

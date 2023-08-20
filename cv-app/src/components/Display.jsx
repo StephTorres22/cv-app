@@ -2,7 +2,7 @@
 /* Display all the info passed into different inputs etc here */
 
 // eslint-disable-next-line react/prop-types
-function DetailsDisplay({ obj }) {
+function DetailsDisplay({ person }) {
   return (
     <div>
       <header className="header">
@@ -13,7 +13,7 @@ function DetailsDisplay({ obj }) {
       </header>
       <section className="about"></section>
       <section className="professional">
-        {obj.jobs.map((job) => {
+        {person.jobs.map((job) => {
           return (
             <div key={job.place}>
               <div className="dates">
@@ -28,7 +28,7 @@ function DetailsDisplay({ obj }) {
         })}
       </section>
       <section className="education">
-        {obj.establishments.map((place) => {
+        {person.establishments.map((place) => {
           return (
             <div key={place.name}>
               <h1>{place.name}</h1>
@@ -39,7 +39,7 @@ function DetailsDisplay({ obj }) {
         })}
       </section>
       <section className="qualifications">
-        {obj.qualifications.map((quali) => {
+        {person.qualifications.map((quali) => {
           return (
             <li key={quali.level + quali.title}>
               {quali.level} {quali.title} {quali.grade}
