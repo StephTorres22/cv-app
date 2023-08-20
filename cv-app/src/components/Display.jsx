@@ -12,7 +12,21 @@ function DetailsDisplay({ obj }) {
         <h1>{email}</h1> */}
       </header>
       <section className="about"></section>
-      <section className="professional"></section>
+      <section className="professional">
+        {obj.jobs.map((job) => {
+          return (
+            <div key={job.place}>
+              <div className="dates">
+                <p>{job.startDate}</p>
+                <p>{job.endDate}</p>
+              </div>
+              <p>{job.place}</p>
+              <p>{job.title}</p>
+              <p>{job.description}</p>
+            </div>
+          );
+        })}
+      </section>
       <section className="education">
         {obj.establishments.map((place) => {
           return (

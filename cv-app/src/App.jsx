@@ -27,7 +27,7 @@ function App() {
   const [subject, setSubject] = useState(defaultValue);
   const [grade, setGrade] = useState(defaultValue);
   const [estab, setEstab] = useState(defaultValue);
-  const [estabStart, setEstatStart] = useState(defaultValue);
+  const [estabStart, setEstatStart] = useState(new Date());
   const [estabEnd, setEstabEnd] = useState(defaultValue);
   const [jobPlace, setJobPlace] = useState(defaultValue);
   const [jobTitle, setJobTitle] = useState(defaultValue);
@@ -68,7 +68,7 @@ function App() {
     };
     setPerson(updatedDetails);
     setEstab(defaultValue);
-    setEstatStart(defaultValue);
+    setEstatStart(new Date());
     setEstabEnd(defaultValue);
     console.log(updatedDetails);
   }
@@ -114,7 +114,7 @@ function App() {
           handleEstablishmentChange={(e) => setEstab(e.target.value)}
           estabValue={estab}
           handleClick={addEstablishment}
-          startChange={(e) => setEstatStart(e.target.value)}
+          startChange={(date) => setEstatStart(date)}
           startDate={estabStart}
           endChange={(e) => setEstabEnd(e.target.value)}
           endDate={estabEnd}

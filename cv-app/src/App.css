@@ -2,6 +2,10 @@
   max-width: 1280px;
 }
 
+p{
+  margin: .25rem;
+}
+
 .whole {
   display: grid;
   grid-template-columns: 1fr 1fr;

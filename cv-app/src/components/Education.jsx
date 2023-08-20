@@ -1,3 +1,9 @@
+import ReactDatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+/* type="date"
+name="startDate"
+id="startDate" */
+
 /* eslint-disable react/prop-types */
 function EducationalEstablishment({
   handleEstablishmentChange,
@@ -20,13 +26,7 @@ function EducationalEstablishment({
           onChange={handleEstablishmentChange}
         />
         <label htmlFor="startDate">Start Date: </label>
-        <input
-          type="date"
-          name="startDate"
-          id="startDate"
-          onChange={startChange}
-          value={startDate}
-        />
+        <ReactDatePicker onChange={startChange} selected={startDate} />
         <label htmlFor="endDate">End Date: </label>
         <input
           type="date"

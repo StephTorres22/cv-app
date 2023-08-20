@@ -79,8 +79,8 @@ function ProfessionalExperience({
             </p>
           )}
         </div>
-        <h3>{jobPlace}</h3>
-        <h3>{title}</h3>
+        <p>{jobPlace}</p>
+        <p>{title}</p>
         <p>{description}</p>
       </div>
     </div>
