@@ -1,7 +1,6 @@
 //import { useState } from "react";
 import "./App.css";
 import { useState } from "react";
-import { CSSTransition } from "react-transition-group";
 
 //import DetailsDisplay from "./components/Display";
 
@@ -23,7 +22,7 @@ function App() {
     qualifications: [],
   });
 
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(2);
 
   const defaultValue = "";
 
@@ -78,34 +77,62 @@ function App() {
                 className="arrow-toggle"
                 id="arrow-toggle"
                 name="professional-toggle"
-                onChange={() => displayActive(0)}
+               // onChange={() => displayActive(0)}
               />
-              <label htmlFor="arrow-toggle" className="arrow-toggle-label">
+              <label htmlFor="arrow-toggle" className="arrow-toggle-label" onClick={() => displayActive(0)}>
                 <span className="arrow"></span>
               </label>
             </div>
           </legend>
         </div>
-        <CSSTransition
-          in={activeIndex === 0}
-          timeout={500}
-          classNames="form-transition"
-        >
-          <ProfessionalExperience
-            jobPlace={jobPlace}
-            handlePlaceChange={jobPlaceChange}
-            title={jobTitle}
-            handleTitleChange={jobTitleChange}
-            description={jobDescription}
-            handleDescriptionChange={jobDescriptionChange}
-            startDate={jobStart}
-            startChange={(date) => setJobStart(new Date(date))}
-            endDate={jobEnd}
-            endChange={(date) => setJobEnd(new Date(date))}
-            onClick={addJob}
-            //isActive={activeIndex === 0}
-          />
-        </CSSTransition>
+        <ProfessionalExperience
+          jobPlace={jobPlace}
+          handlePlaceChange={jobPlaceChange}
+          title={jobTitle}
+          handleTitleChange={jobTitleChange}
+          description={jobDescription}
+          handleDescriptionChange={jobDescriptionChange}
+          startDate={jobStart}
+          startChange={(date) => setJobStart(new Date(date))}
+          endDate={jobEnd}
+          endChange={(date) => setJobEnd(new Date(date))}
+          onClick={addJob}
+          isActive={activeIndex === 0}
+        />
+      </div>
+      <div className="form">
+        <div className="form-legend">
+          <legend>
+            <u>Professional Experience</u>
+            <div className="arrow-background">
+              <input
+                type="checkbox"
+                className="arrow-toggle"
+                id="quali-arrow-toggle"
+                name="quali-toggle"
+                //onChange={() => setActiveIndex(2)}
+              />
+              <label htmlFor="arrow-toggle" className="arrow-toggle-label" onClick={() => displayActive(2)}>
+
+                <span className="arrow"></span>
+              </label>
+            </div>
+          </legend>
+        </div>
+        <ProfessionalExperience
+          jobPlace={jobPlace}
+          handlePlaceChange={jobPlaceChange}
+          title={jobTitle}
+          handleTitleChange={jobTitleChange}
+          description={jobDescription}
+          handleDescriptionChange={jobDescriptionChange}
+          startDate={jobStart}
+          startChange={(date) => setJobStart(new Date(date))}
+          endDate={jobEnd}
+          endChange={(date) => setJobEnd(new Date(date))}
+          onClick={addJob}
+          isActive={activeIndex === 2}
+        />
       </div>
     </div>
   );

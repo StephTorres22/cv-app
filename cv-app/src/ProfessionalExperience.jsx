@@ -1,5 +1,6 @@
 import DateSelector from "./components/DateSelector";
 import "./styles/forms.css";
+import { CSSTransition } from "react-transition-group";
 
 /* eslint-disable react/prop-types */
 function ProfessionalExperience({
@@ -14,10 +15,15 @@ function ProfessionalExperience({
   endDate,
   endChange,
   onClick,
-  //isActive,
+  isActive,
 }) {
-  
-    return (
+  return (
+    <CSSTransition
+      in={isActive}
+      timeout={600}
+      mountOnEnter={true}
+      classNames="form-transition"
+    >
       <div className="forms-container">
         <form action="" className="forms">
           <input
@@ -72,7 +78,8 @@ function ProfessionalExperience({
           <p>{description}</p>
         </div>
       </div>
-    );
+    </CSSTransition>
+  );
 }
 
 export default ProfessionalExperience;

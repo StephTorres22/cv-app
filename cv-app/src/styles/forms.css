@@ -79,7 +79,7 @@
 
 .arrow-background:hover .arrow::after {
   transform: rotate(-120deg);
-  transition: transform 400ms ease-in;
+  transition: transform 600ms ease-in;
 }
 .arrow-toggle:checked ~ .arrow-toggle-label .arrow::after {
   transform: rotate(-120deg);
@@ -91,12 +91,28 @@
 
 .arrow-background:hover .arrow::before {
   transform: rotate(120deg);
-  transition: transform 400ms ease-in;
+  transition: transform 600ms ease-in;
 }
 
 .arrow-background .arrow::after,
 .arrow-background .arrow::before {
-  transition: transform 400ms ease-out;
+  transition: transform 600ms ease-out;
+}
+
+.arrow-background:hover
+  .arrow-toggle:checked
+  ~ .arrow-toggle-label
+  .arrow::after {
+  transform: rotate(5deg);
+  transition: transform 600ms ease-in;
+}
+
+.arrow-background:hover
+  .arrow-toggle:checked
+  ~ .arrow-toggle-label
+  .arrow::before {
+  transform: rotate(-5deg);
+  transition: transform 600ms ease-in;
 }
 
 /* add transition to a parent of .arrow::before .arrow::after
@@ -113,7 +129,7 @@ that way can be on a less specific area, i.e the whole legend or the corner */
   translate: -50%;
   text-align: center;
   top: 25%;
-  transition: transfrom 300ms ease-out;
+  transition: transfrom 600ms ease-out;
 }
 
 .arrow::after {
@@ -125,13 +141,14 @@ that way can be on a less specific area, i.e the whole legend or the corner */
 }
 
 /* TRANSITION STTLES, ENTER AND EXIT */
+
 .form-transition-enter {
   transform: scale(1, 0);
 }
 
 .form-transition-enter-active {
   transform: scale(1, 1);
-  transition: transform 500ms ease-in;
+  transition: transform 600ms ease-in;
   transform-origin: bottom;
 }
 .form-transition-enter-done {

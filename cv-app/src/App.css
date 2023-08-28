@@ -7,14 +7,18 @@ p {
   font-size: 1rem;
 }
 
-.whole {
+/* .whole {
   display: grid;
+  
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "forms display";
   padding: 2rem;
+} */
+
+.whole {
+  display: flex;
+  flex-direction: column;
 }
-
-
 
 .forms {
   grid-area: "forms";
