@@ -1,6 +1,7 @@
 //import { useState } from "react";
 import "./App.css";
 import { useState } from "react";
+import { CSSTransition } from "react-transition-group";
 
 //import DetailsDisplay from "./components/Display";
 
@@ -22,6 +23,8 @@ function App() {
     qualifications: [],
   });
 
+  const [activeIndex, setActiveIndex] = useState(1);
+
   const defaultValue = "";
 
   const [jobPlace, setJobPlace] = useState(defaultValue);
@@ -42,6 +45,14 @@ function App() {
     setJobDesrciption(e.target.value);
   }
 
+  function displayActive(num) {
+    if (activeIndex === num) {
+      setActiveIndex(null);
+    } else {
+      setActiveIndex(num);
+    }
+  }
+
   function addJob() {
     const updatedPerson = {
       ...person,
@@ -57,19 +68,45 @@ function App() {
 
   return (
     <div className="whole">
-      <ProfessionalExperience
-        jobPlace={jobPlace}
-        handlePlaceChange={jobPlaceChange}
-        title={jobTitle}
-        handleTitleChange={jobTitleChange}
-        description={jobDescription}
-        handleDescriptionChange={jobDescriptionChange}
-        startDate={jobStart}
-        startChange={(date) => setJobStart(new Date(date))}
-        endDate={jobEnd}
-        endChange={(date) => setJobEnd(new Date(date))}
-        onClick={addJob}
-      />
+      <div className="form">
+        <div className="form-legend">
+          <legend>
+            <u>Professional Experience</u>
+            <div className="arrow-background">
+              <input
+                type="checkbox"
+                className="arrow-toggle"
+                id="arrow-toggle"
+                name="professional-toggle"
+                onChange={() => displayActive(0)}
+              />
+              <label htmlFor="arrow-toggle" className="arrow-toggle-label">
+                <span className="arrow"></span>
+              </label>
+            </div>
+          </legend>
+        </div>
+        <CSSTransition
+          in={activeIndex === 0}
+          timeout={500}
+          classNames="form-transition"
+        >
+          <ProfessionalExperience
+            jobPlace={jobPlace}
+            handlePlaceChange={jobPlaceChange}
+            title={jobTitle}
+            handleTitleChange={jobTitleChange}
+            description={jobDescription}
+            handleDescriptionChange={jobDescriptionChange}
+            startDate={jobStart}
+            startChange={(date) => setJobStart(new Date(date))}
+            endDate={jobEnd}
+            endChange={(date) => setJobEnd(new Date(date))}
+            onClick={addJob}
+            //isActive={activeIndex === 0}
+          />
+        </CSSTransition>
+      </div>
     </div>
   );
 }

@@ -14,11 +14,7 @@ p {
   padding: 2rem;
 }
 
-.forms-container {
-  border: solid blue 1px;
-  border-radius: 10px;
-  max-width: 30rem;
-}
+
 
 .forms {
   grid-area: "forms";
