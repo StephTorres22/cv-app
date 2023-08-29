@@ -1,0 +1,17 @@
+.panel h2 {
+  margin-top: 5px;
+}
+
+.panel .panel-heading {
+  cursor: pointer;
+}
+
+.panel .panel-collapse {
+  overflow: hidden;
+  transition: height 300ms ease-out;
+}
+
+.panel .panel-body {
+  border: none;
+}
+

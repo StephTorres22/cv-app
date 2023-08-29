@@ -10,6 +10,7 @@ import ProfessionalExperience from "./ProfessionalExperience";
 //import Quali from "./classes/qualification";
 //import Establishment from "./classes/establishment";
 import Job from "./classes/job";
+import Collapsable from "./components/Collapsable";
 
 function App() {
   const [person, setPerson] = useState({
@@ -67,24 +68,7 @@ function App() {
 
   return (
     <div className="whole">
-      <div className="form">
-        <div className="form-legend">
-          <legend>
-            <u>Professional Experience</u>
-            <div className="arrow-background">
-              <input
-                type="checkbox"
-                className="arrow-toggle"
-                id="arrow-toggle"
-                name="professional-toggle"
-               // onChange={() => displayActive(0)}
-              />
-              <label htmlFor="arrow-toggle" className="arrow-toggle-label" onClick={() => displayActive(0)}>
-                <span className="arrow"></span>
-              </label>
-            </div>
-          </legend>
-        </div>
+      <Collapsable title="Pro">
         <ProfessionalExperience
           jobPlace={jobPlace}
           handlePlaceChange={jobPlaceChange}
@@ -97,7 +81,44 @@ function App() {
           endDate={jobEnd}
           endChange={(date) => setJobEnd(new Date(date))}
           onClick={addJob}
-          isActive={activeIndex === 0}
+        />
+      </Collapsable>
+
+      <div className="form">
+        <div className="form-legend">
+          <legend>
+            <u>Professional Experience</u>
+            <div className="arrow-background">
+              <input
+                type="checkbox"
+                className="arrow-toggle"
+                id="arrow-toggle"
+                name="professional-toggle"
+                // onChange={() => displayActive(0)}
+              />
+              <label
+                htmlFor="arrow-toggle"
+                className="arrow-toggle-label"
+                onClick={() => displayActive(0)}
+              >
+                <span className="arrow"></span>
+              </label>
+            </div>
+          </legend>
+        </div>
+
+        <ProfessionalExperience
+          jobPlace={jobPlace}
+          handlePlaceChange={jobPlaceChange}
+          title={jobTitle}
+          handleTitleChange={jobTitleChange}
+          description={jobDescription}
+          handleDescriptionChange={jobDescriptionChange}
+          startDate={jobStart}
+          startChange={(date) => setJobStart(new Date(date))}
+          endDate={jobEnd}
+          endChange={(date) => setJobEnd(new Date(date))}
+          onClick={addJob}
         />
       </div>
       <div className="form">
@@ -112,8 +133,11 @@ function App() {
                 name="quali-toggle"
                 //onChange={() => setActiveIndex(2)}
               />
-              <label htmlFor="arrow-toggle" className="arrow-toggle-label" onClick={() => displayActive(2)}>
-
+              <label
+                htmlFor="arrow-toggle"
+                className="arrow-toggle-label"
+                onClick={() => displayActive(2)}
+              >
                 <span className="arrow"></span>
               </label>
             </div>
