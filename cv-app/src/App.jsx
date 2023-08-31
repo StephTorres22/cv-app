@@ -23,7 +23,7 @@ function App() {
     qualifications: [],
   });
 
-  const [activeIndex, setActiveIndex] = useState(2);
+  //const [activeIndex, setActiveIndex] = useState(2);
 
   const defaultValue = "";
 
@@ -45,13 +45,13 @@ function App() {
     setJobDesrciption(e.target.value);
   }
 
-  function displayActive(num) {
+  /*   function displayActive(num) {
     if (activeIndex === num) {
       setActiveIndex(null);
     } else {
       setActiveIndex(num);
     }
-  }
+  } */
 
   function addJob() {
     const updatedPerson = {
@@ -68,7 +68,7 @@ function App() {
 
   return (
     <div className="whole">
-      <Collapsable title="Pro">
+      <Collapsable title="Professional Experience">
         <ProfessionalExperience
           jobPlace={jobPlace}
           handlePlaceChange={jobPlaceChange}
@@ -83,30 +83,7 @@ function App() {
           onClick={addJob}
         />
       </Collapsable>
-
-      <div className="form">
-        <div className="form-legend">
-          <legend>
-            <u>Professional Experience</u>
-            <div className="arrow-background">
-              <input
-                type="checkbox"
-                className="arrow-toggle"
-                id="arrow-toggle"
-                name="professional-toggle"
-                // onChange={() => displayActive(0)}
-              />
-              <label
-                htmlFor="arrow-toggle"
-                className="arrow-toggle-label"
-                onClick={() => displayActive(0)}
-              >
-                <span className="arrow"></span>
-              </label>
-            </div>
-          </legend>
-        </div>
-
+      <Collapsable title="Professional Experience">
         <ProfessionalExperience
           jobPlace={jobPlace}
           handlePlaceChange={jobPlaceChange}
@@ -120,44 +97,7 @@ function App() {
           endChange={(date) => setJobEnd(new Date(date))}
           onClick={addJob}
         />
-      </div>
-      <div className="form">
-        <div className="form-legend">
-          <legend>
-            <u>Professional Experience</u>
-            <div className="arrow-background">
-              <input
-                type="checkbox"
-                className="arrow-toggle"
-                id="quali-arrow-toggle"
-                name="quali-toggle"
-                //onChange={() => setActiveIndex(2)}
-              />
-              <label
-                htmlFor="arrow-toggle"
-                className="arrow-toggle-label"
-                onClick={() => displayActive(2)}
-              >
-                <span className="arrow"></span>
-              </label>
-            </div>
-          </legend>
-        </div>
-        <ProfessionalExperience
-          jobPlace={jobPlace}
-          handlePlaceChange={jobPlaceChange}
-          title={jobTitle}
-          handleTitleChange={jobTitleChange}
-          description={jobDescription}
-          handleDescriptionChange={jobDescriptionChange}
-          startDate={jobStart}
-          startChange={(date) => setJobStart(new Date(date))}
-          endDate={jobEnd}
-          endChange={(date) => setJobEnd(new Date(date))}
-          onClick={addJob}
-          isActive={activeIndex === 2}
-        />
-      </div>
+      </Collapsable>
     </div>
   );
 }
