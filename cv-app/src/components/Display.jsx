@@ -1,21 +1,29 @@
 /* eslint-disable react/prop-types */
 /* Display all the info passed into different inputs etc here */
-
+import "../styles/preview.css";
 // eslint-disable-next-line react/prop-types
-function DetailsDisplay({ person }) {
+function DetailsDisplay({ person, location, aboutMe }) {
   return (
-    <div>
+    <div className="cv">
       <header className="header">
-        {/* <h1>{firstName}</h1>
-        <h1>{surName}</h1>
-        <h1>{number}</h1>
-        <h1>{email}</h1> */}
+        <div className="header-left">
+          <p>
+            {person.firstName} {person.surName}
+            <p>{location}</p>
+          </p>
+        </div>
+        <div className="header-right">
+          <p>{person.phoneNumber}</p>
+          <p>{person.email}</p>
+        </div>
       </header>
-      <section className="about"></section>
+      <section className="about">
+        <p>{aboutMe}</p>
+      </section>
       <section className="professional">
         {person.jobs.map((job) => {
           return (
-            <div key={job.place}>
+            <div key={job.id}>
               <div className="dates">
                 <p>{job.startDate}</p>
                 <p>{job.endDate}</p>
@@ -30,7 +38,7 @@ function DetailsDisplay({ person }) {
       <section className="education">
         {person.establishments.map((place) => {
           return (
-            <div key={place.name}>
+            <div key={place.id}>
               <h1>{place.name}</h1>
               <p>From: {place.startDate}</p>
               <p>Until: {place.endDate}</p>
@@ -41,7 +49,7 @@ function DetailsDisplay({ person }) {
       <section className="qualifications">
         {person.qualifications.map((quali) => {
           return (
-            <li key={quali.level + quali.title}>
+            <li key={quali.id}>
               {quali.level} {quali.title} {quali.grade}
             </li>
           );

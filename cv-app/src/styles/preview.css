@@ -1,0 +1,34 @@
+.cv {
+  min-width: 50rem;
+  min-height: 100vh;
+  border: solid black 1px;
+}
+
+.header {
+  margin-top: 0;
+  width: 100%;
+  min-height: 15vh;
+  background-color: aqua;
+  display: flex;
+  justify-content: space-between;
+}
+.header .header-left,
+.header .header-right {
+  padding-top: 2rem;
+}
+.header .header-left {
+  padding-left: 2rem;
+}
+
+.header .header-right {
+  padding-right: 2rem;
+}
+
+.about{
+    min-height: 15vh;
+    background-color: beige;
+    padding: 2rem;
+    max-width: 50rem;
+    overflow-wrap: break-word;
+    
+}

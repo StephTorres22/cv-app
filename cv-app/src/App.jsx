@@ -4,7 +4,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 //import DetailsDisplay from "./components/Display";
-
+import PeronsalInformation from "./components/PersonalInformation";
 import ProfessionalExperience from "./ProfessionalExperience";
 //import EducationalEstablishment from "./components/Education";
 //import Qualification from "./Qualifications";
@@ -13,6 +13,7 @@ import Establishment from "./classes/establishment";
 import Job from "./classes/job";
 import Collapsable from "./components/Collapsable";
 import EducationalEstablishment from "./components/Education";
+import DetailsDisplay from "./components/Display";
 
 function App() {
   const [person, setPerson] = useState({
@@ -25,10 +26,38 @@ function App() {
     qualifications: [],
   });
 
-  //const [activeIndex, setActiveIndex] = useState(2);
-
   const defaultValue = "";
   const defaultDate = new Date();
+
+  /* PERSONAL INFO STATE */
+
+  const [location, setLocation] = useState(defaultValue);
+  const [aboutMe, setAboutMe] = useState(defaultValue);
+
+  function handleLocationChange(e) {
+    setLocation(e.target.value);
+  }
+
+  function managePersonFirstName(e) {
+    const updatedPerson = { ...person, firstName: e.target.value };
+    setPerson(updatedPerson);
+  }
+
+  function managePersonSurname(e) {
+    const updatedPerson = { ...person, surName: e.target.value };
+    setPerson(updatedPerson);
+  }
+
+  function managePersonEmail(e) {
+    const updatedPerson = { ...person, email: e.target.value };
+    setPerson(updatedPerson);
+  }
+
+  function managePersonPhoneNumber(e) {
+    const updatedPerson = { ...person, phoneNumber: e.target.value };
+    setPerson(updatedPerson);
+  }
+  //const [activeIndex, setActiveIndex] = useState(2);
 
   /* JOB STATE */
   const [jobPlace, setJobPlace] = useState(defaultValue);
@@ -94,32 +123,53 @@ function App() {
 
   return (
     <div className="whole">
-      <Collapsable title="Professional Experience">
-        <ProfessionalExperience
-          jobPlace={jobPlace}
-          handlePlaceChange={jobPlaceChange}
-          title={jobTitle}
-          handleTitleChange={jobTitleChange}
-          description={jobDescription}
-          handleDescriptionChange={jobDescriptionChange}
-          startDate={jobStart}
-          startChange={(date) => setJobStart(new Date(date))}
-          endDate={jobEnd}
-          endChange={(date) => setJobEnd(new Date(date))}
-          onClick={addJob}
-        />
-      </Collapsable>
-      <Collapsable title="Education">
-        <EducationalEstablishment
-          handleEstablishmentChange={establishmentChange}
-          place={estabPlace}
-          startDate={estabStart}
-          startChange={(date) => setEstabStart(new Date(date))}
-          endDate={estabEnd}
-          endChange={(date) => setEstabEnd(new Date(date))}
-          handleClick={addEstablishment}
-        />
-      </Collapsable>
+      <div className="left">
+        <Collapsable title="Personal Information">
+          <PeronsalInformation
+            firstName={person.firstName}
+            surname={person.surName}
+            phoneNumber={person.phoneNumber}
+            email={person.email}
+            handleFirstNameChange={managePersonFirstName}
+            handleSurnameChange={managePersonSurname}
+            handleEmailChange={managePersonEmail}
+            handlePhoneNumberChange={managePersonPhoneNumber}
+            place={location}
+            handlePlaceChange={handleLocationChange}
+            description={aboutMe}
+            handleDescriptionChange={(e) => setAboutMe(e.target.value)}
+          />
+        </Collapsable>
+        <Collapsable title="Professional Experience">
+          <ProfessionalExperience
+            jobPlace={jobPlace}
+            handlePlaceChange={jobPlaceChange}
+            title={jobTitle}
+            handleTitleChange={jobTitleChange}
+            description={jobDescription}
+            handleDescriptionChange={jobDescriptionChange}
+            startDate={jobStart}
+            startChange={(date) => setJobStart(new Date(date))}
+            endDate={jobEnd}
+            endChange={(date) => setJobEnd(new Date(date))}
+            onClick={addJob}
+          />
+        </Collapsable>
+        <Collapsable title="Education">
+          <EducationalEstablishment
+            handleEstablishmentChange={establishmentChange}
+            place={estabPlace}
+            startDate={estabStart}
+            startChange={(date) => setEstabStart(new Date(date))}
+            endDate={estabEnd}
+            endChange={(date) => setEstabEnd(new Date(date))}
+            handleClick={addEstablishment}
+          />
+        </Collapsable>
+      </div>
+      <div className="right">
+        <DetailsDisplay person={person} location={location} aboutMe={aboutMe} />
+      </div>
     </div>
   );
 }
