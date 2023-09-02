@@ -1,5 +1,5 @@
-import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import DateSelector from "./DateSelector";
 /* type="date"
 name="startDate"
 id="startDate" */
@@ -7,7 +7,7 @@ id="startDate" */
 /* eslint-disable react/prop-types */
 function EducationalEstablishment({
   handleEstablishmentChange,
-  estabValue,
+  place,
   handleClick,
   startChange,
   startDate,
@@ -15,30 +15,37 @@ function EducationalEstablishment({
   endChange,
 }) {
   return (
-    <div>
-      <form action="">
-        <legend>Educational Establsihments</legend>
+    <div className="forms-container">
+      <form action="" className="forms">
         <input
           type="text"
           className=""
           placeholder="Establishment"
-          value={estabValue}
+          value={place}
           onChange={handleEstablishmentChange}
         />
-        <label htmlFor="startDate">Start Date: </label>
-        <ReactDatePicker onChange={startChange} selected={startDate} />
-        <label htmlFor="endDate">End Date: </label>
-        <input
-          type="date"
-          name="endDate"
-          id="endDate"
-          value={endDate}
-          onChange={endChange}
+        <DateSelector
+          startDate={startDate}
+          endDate={endDate}
+          handleStartChange={startChange}
+          handleEndChange={endChange}
         />
-        <button type="button" onClick={handleClick}>
-          Add
-        </button>
       </form>
+      <div className="preview">
+        {place !== '' && (
+          <div className="preview-dates">
+            <p>
+              {startDate.toLocaleDateString()} - {endDate.toLocaleDateString()}
+            </p>
+          </div>
+        )}
+        <p>
+          <u>{place}</u>
+        </p>
+      </div>
+      <button type="button" onClick={handleClick}>
+        Add
+      </button>
     </div>
   );
 }

@@ -12,11 +12,19 @@ function DateSelector({
     <div className="dates">
       <div>
         Start Date:
-        <ReactDatePicker selected={startDate} onChange={handleStartChange} />
+        <ReactDatePicker
+          selected={startDate}
+          onChange={handleStartChange}
+          dateFormat={"dd/MM/yyyy"}
+        />
       </div>
       <div>
         End Date:
-        <ReactDatePicker selected={endDate} onChange={handleEndChange} />
+        <ReactDatePicker
+          selected={endDate}
+          onChange={handleEndChange}
+          dateFormat={"dd/MM/yyyy"}
+        />
       </div>
     </div>
   );
