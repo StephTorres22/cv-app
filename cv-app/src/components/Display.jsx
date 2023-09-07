@@ -9,8 +9,8 @@ function DetailsDisplay({ person, location, aboutMe }) {
         <div className="header-left">
           <p>
             {person.firstName} {person.surName}
-            <p>{location}</p>
           </p>
+          <p>{location}</p>
         </div>
         <div className="header-right">
           <p>{person.phoneNumber}</p>
@@ -20,17 +20,20 @@ function DetailsDisplay({ person, location, aboutMe }) {
       <section className="about">
         <p>{aboutMe}</p>
       </section>
-      <section className="professional">
+      <section className="professional-container">
         {person.jobs.map((job) => {
           return (
-            <div key={job.id}>
-              <div className="dates">
-                <p>{job.startDate}</p>
-                <p>{job.endDate}</p>
+            <div className="professional" key={job.id}>
+              <div className="professional-detatils">
+                <p>{job.startDate.toLocaleDateString()} -</p>
+                <p>{job.endDate.toLocaleDateString()}</p>
+
+                <p>{job.place}</p>
+                <p>{job.title}</p>
               </div>
-              <p>{job.place}</p>
-              <p>{job.title}</p>
-              <p>{job.description}</p>
+              <div className="professional-description">
+                <p>{job.description}</p>
+              </div>
             </div>
           );
         })}

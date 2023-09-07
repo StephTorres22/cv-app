@@ -24,11 +24,31 @@
   padding-right: 2rem;
 }
 
-.about{
-    min-height: 15vh;
-    background-color: beige;
-    padding: 2rem;
-    max-width: 50rem;
-    overflow-wrap: break-word;
-    
+.about {
+  min-height: 15vh;
+  background-color: beige;
+  padding: 2rem;
+  max-width: 50rem;
+  overflow-wrap: break-word;
+}
+
+.professional-container {
+  min-height: 15vh;
+  background-color: pink;
+  padding: 2rem;
+}
+
+.professional {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "deatils description";
+  justify-content: space-between;
+}
+
+.professional-details{
+  grid-area: details;
+}
+
+.professional-description{
+  grid-area: description;
 }
