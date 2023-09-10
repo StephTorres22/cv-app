@@ -96,8 +96,30 @@ function App() {
       ),
     };
     setPerson(updatedPerson);
-    console.log(person);
+    console.log(updatedPerson, person);
   }
+
+  function removeJob(id) {
+    /* const index = person.jobs.findIndex((job) => {
+      return job.id === id;
+    }); */
+
+    const newJobs = person.jobs.filter((job) => job.id !== id);
+    const updatedPerson = { ...person, jobs: newJobs };
+    setPerson(updatedPerson);
+    alert("Not working?");
+    console.log(updatedPerson, person, id, newJobs);
+  }
+
+  /*  function handleJobRemove(id) {
+    const updatedPerson = {
+      ...person,
+      jobs: person.jobs.filter((job) => job.id !== id),
+    };
+    setPerson(updatedPerson);
+    alert("Not working?");
+    console.log(person);
+  } */
 
   /* ESTABLISHMENT STATE */
   const [estabPlace, setEstabPlace] = useState(defaultValue);
@@ -168,7 +190,14 @@ function App() {
         </Collapsable>
       </div>
       <div className="right">
-        <DetailsDisplay person={person} location={location} aboutMe={aboutMe} />
+        <DetailsDisplay
+          person={person}
+          location={location}
+          aboutMe={aboutMe}
+          onJobRemove={
+            removeJob
+          } 
+        />
       </div>
     </div>
   );

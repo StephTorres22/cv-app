@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
 /* Display all the info passed into different inputs etc here */
 import "../styles/preview.css";
+
 // eslint-disable-next-line react/prop-types
-function DetailsDisplay({ person, location, aboutMe }) {
+
+function DetailsDisplay({ person, location, aboutMe, onJobRemove }) {
   return (
     <div className="cv">
       <header className="header">
@@ -30,6 +32,16 @@ function DetailsDisplay({ person, location, aboutMe }) {
 
                 <p>{job.place}</p>
                 <p>{job.title}</p>
+
+                <button type="button">Edit</button>
+                <button type="button" onClick={() => onJobRemove(job.id)}>
+                  {/* for some reason need () =>, stops a bubbling call straight away..? 
+                      also stop id becoming a syntheticevent(whatever that is) and actually using 
+                      the correct string id for each indiviual job instance. 
+                      might be a bit more confusing that just removing a standard list item as state is being lifted
+                      into app, also remove is lifted and passed down as prop */}
+                  Delete
+                </button>
               </div>
               <div className="professional-description">
                 <p>{job.description}</p>
