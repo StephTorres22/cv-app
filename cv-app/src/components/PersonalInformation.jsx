@@ -5,14 +5,9 @@ function PeronsalInformation({
   surname,
   phoneNumber,
   email,
-  handleFirstNameChange,
-  handleSurnameChange,
-  handlePhoneNumberChange,
-  handleEmailChange,
   place,
-  handlePlaceChange,
   description,
-  handleDescriptionChange
+  handleChange,
 }) {
   return (
     <div className="forms-container">
@@ -23,23 +18,23 @@ function PeronsalInformation({
           id="firstName"
           placeholder="First name"
           value={firstName}
-          onChange={handleFirstNameChange}
+          onChange={handleChange}
         />
         <input
           type="text"
-          name="surname"
+          name="surName"
           id="surname"
           placeholder="Surname"
           value={surname}
-          onChange={handleSurnameChange}
+          onChange={handleChange}
         />
         <input
           type="text"
-          name="location"
-          id="location"
+          name="place"
+          id="place"
           placeholder="Location"
           value={place}
-          onChange={handlePlaceChange}
+          onChange={handleChange}
         />
         <input
           type="email"
@@ -47,7 +42,7 @@ function PeronsalInformation({
           id="email"
           value={email}
           placeholder="Email"
-          onChange={handleEmailChange}
+          onChange={handleChange}
         />
         <input
           type="tel"
@@ -55,19 +50,20 @@ function PeronsalInformation({
           id="phoneNumber"
           value={phoneNumber}
           placeholder="Phone number"
-          onChange={handlePhoneNumberChange}
+          onChange={handleChange}
           pattern="[0-9]{5}-[0-9]{3}-[0-9]{3}"
           required
         />
         <textarea
-         rows={4}
-         style={{ resize: "none" }}
-         name=""
-         id=""
-         className=""
-         placeholder="About me"
-         value={description}
-         onChange={handleDescriptionChange}/>
+          rows={4}
+          style={{ resize: "none" }}
+          name="description"
+          id=""
+          className=""
+          placeholder="About me"
+          value={description}
+          onChange={handleChange}
+        />
       </form>
     </div>
   );

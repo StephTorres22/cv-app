@@ -20,6 +20,8 @@ function App() {
     firstName: "",
     surName: "",
     phoneNumber: "",
+    place: "",
+    description: "",
     email: "",
     jobs: [],
     establishments: [],
@@ -29,34 +31,15 @@ function App() {
   const defaultValue = "";
   const defaultDate = new Date();
 
-  /* PERSONAL INFO STATE */
+  function handleInputChange(e) {
+    const updatedPerson = {
+      ...person,
+      [e.target.name]: e.target.value,
+    };
 
-  const [location, setLocation] = useState(defaultValue);
-  const [aboutMe, setAboutMe] = useState(defaultValue);
-
-  function handleLocationChange(e) {
-    setLocation(e.target.value);
-  }
-
-  function managePersonFirstName(e) {
-    const updatedPerson = { ...person, firstName: e.target.value };
     setPerson(updatedPerson);
   }
 
-  function managePersonSurname(e) {
-    const updatedPerson = { ...person, surName: e.target.value };
-    setPerson(updatedPerson);
-  }
-
-  function managePersonEmail(e) {
-    const updatedPerson = { ...person, email: e.target.value };
-    setPerson(updatedPerson);
-  }
-
-  function managePersonPhoneNumber(e) {
-    const updatedPerson = { ...person, phoneNumber: e.target.value };
-    setPerson(updatedPerson);
-  }
   //const [activeIndex, setActiveIndex] = useState(2);
 
   /* JOB STATE */
@@ -78,14 +61,6 @@ function App() {
     setJobDesrciption(e.target.value);
   }
 
-  /*   function displayActive(num) {
-    if (activeIndex === num) {
-      setActiveIndex(null);
-    } else {
-      setActiveIndex(num);
-    }
-  } */
-
   function addJob() {
     const updatedPerson = {
       ...person,
@@ -100,26 +75,12 @@ function App() {
   }
 
   function removeJob(id) {
-    /* const index = person.jobs.findIndex((job) => {
-      return job.id === id;
-    }); */
-
     const newJobs = person.jobs.filter((job) => job.id !== id);
     const updatedPerson = { ...person, jobs: newJobs };
     setPerson(updatedPerson);
-    alert("Not working?");
-    console.log(updatedPerson, person, id, newJobs);
+    /*  alert("Not working?");
+    console.log(updatedPerson, person, id, newJobs); */
   }
-
-  /*  function handleJobRemove(id) {
-    const updatedPerson = {
-      ...person,
-      jobs: person.jobs.filter((job) => job.id !== id),
-    };
-    setPerson(updatedPerson);
-    alert("Not working?");
-    console.log(person);
-  } */
 
   /* ESTABLISHMENT STATE */
   const [estabPlace, setEstabPlace] = useState(defaultValue);
@@ -152,14 +113,9 @@ function App() {
             surname={person.surName}
             phoneNumber={person.phoneNumber}
             email={person.email}
-            handleFirstNameChange={managePersonFirstName}
-            handleSurnameChange={managePersonSurname}
-            handleEmailChange={managePersonEmail}
-            handlePhoneNumberChange={managePersonPhoneNumber}
-            place={location}
-            handlePlaceChange={handleLocationChange}
-            description={aboutMe}
-            handleDescriptionChange={(e) => setAboutMe(e.target.value)}
+            place={person.place}
+            description={person.description}
+            handleChange={handleInputChange}
           />
         </Collapsable>
         <Collapsable title="Professional Experience">
@@ -190,14 +146,7 @@ function App() {
         </Collapsable>
       </div>
       <div className="right">
-        <DetailsDisplay
-          person={person}
-          location={location}
-          aboutMe={aboutMe}
-          onJobRemove={
-            removeJob
-          } 
-        />
+        <DetailsDisplay person={person} onJobRemove={removeJob} />
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import "../styles/preview.css";
 
 // eslint-disable-next-line react/prop-types
 
-function DetailsDisplay({ person, location, aboutMe, onJobRemove }) {
+function DetailsDisplay({ person, onJobRemove }) {
   return (
     <div className="cv">
       <header className="header">
@@ -12,7 +12,7 @@ function DetailsDisplay({ person, location, aboutMe, onJobRemove }) {
           <p>
             {person.firstName} {person.surName}
           </p>
-          <p>{location}</p>
+          <p>{person.place}</p>
         </div>
         <div className="header-right">
           <p>{person.phoneNumber}</p>
@@ -20,7 +20,7 @@ function DetailsDisplay({ person, location, aboutMe, onJobRemove }) {
         </div>
       </header>
       <section className="about">
-        <p>{aboutMe}</p>
+        <p>{person.description}</p>
       </section>
       <section className="professional-container">
         {person.jobs.map((job) => {
