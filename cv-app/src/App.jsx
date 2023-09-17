@@ -6,11 +6,6 @@ import { v4 as uuidv4 } from "uuid";
 //import DetailsDisplay from "./components/Display";
 import PeronsalInformation from "./components/PersonalInformation";
 import ProfessionalExperience from "./ProfessionalExperience";
-//import EducationalEstablishment from "./components/Education";
-//import Qualification from "./Qualifications";
-//import Quali from "./classes/qualification";
-import Establishment from "./classes/establishment";
-import Job from "./classes/job";
 import Collapsable from "./components/Collapsable";
 import EducationalEstablishment from "./components/Education";
 import DetailsDisplay from "./components/Display";
@@ -48,6 +43,7 @@ function App() {
     jobDescription: defaultValue,
     jobStart: defaultDate,
     jobEnd: defaultDate,
+    id: defaultDate,
   };
 
   const [job, setJob] = useState(initailJob);
@@ -58,32 +54,19 @@ function App() {
   }
 
   function addJob() {
+    const updatedJob = { ...job, id: uuidv4() };
     const updatedPerson = {
       ...person,
-      jobs: person.jobs.toSpliced(
-        0,
-        0,
-        new Job(
-          job.jobPlace,
-          job.jobTitle,
-          job.jobDescription,
-          job.jobStart,
-          job.jobEnd,
-          uuidv4()
-        )
-      ),
+      jobs: person.jobs.toSpliced(0, 0, updatedJob),
     };
     setPerson(updatedPerson);
     setJob(initailJob);
-    console.log(updatedPerson, person);
   }
 
   function removeJob(id) {
     const newJobs = person.jobs.filter((job) => job.id !== id);
     const updatedPerson = { ...person, jobs: newJobs };
     setPerson(updatedPerson);
-    /*  alert("Not working?");
-    console.log(updatedPerson, person, id, newJobs); */
   }
 
   /* ESTABLISHMENT STATE */
@@ -93,6 +76,7 @@ function App() {
     qualifications: [],
     startDate: defaultDate,
     endDate: defaultDate,
+    id: defaultValue,
   };
 
   const [establishment, setEstablisment] = useState(initialEstablisment);
@@ -106,17 +90,13 @@ function App() {
   }
 
   function addEstablishment() {
+    const updatedEstablisment = { ...establishment, id: uuidv4() };
     const updatedPerson = {
       ...person,
       establishments: person.establishments.toSpliced(
         0,
         0,
-        new Establishment(
-          establishment.place,
-          establishment.startDate,
-          establishment.endDate,
-          uuidv4()
-        )
+        updatedEstablisment
       ),
     };
     setPerson(updatedPerson);

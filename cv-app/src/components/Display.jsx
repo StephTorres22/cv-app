@@ -27,11 +27,11 @@ function DetailsDisplay({ person, onJobRemove, onEstablismentRemove }) {
           return (
             <div className="professional" key={job.id}>
               <div className="professional-detatils">
-                <p>{job.startDate.toLocaleDateString()} -</p>
-                <p>{job.endDate.toLocaleDateString()}</p>
+                <p>{job.jobStart.toLocaleDateString()} -</p>
+                <p>{job.jobEnd.toLocaleDateString()}</p>
 
-                <p>{job.place}</p>
-                <p>{job.title}</p>
+                <p>{job.jobPlace}</p>
+                <p>{job.jobTitle}</p>
 
                 <button type="button">Edit</button>
                 <button type="button" onClick={() => onJobRemove(job.id)}>
@@ -44,7 +44,7 @@ function DetailsDisplay({ person, onJobRemove, onEstablismentRemove }) {
                 </button>
               </div>
               <div className="professional-description">
-                <p>{job.description}</p>
+                <p>{job.jobDescription}</p>
               </div>
             </div>
           );
@@ -59,7 +59,12 @@ function DetailsDisplay({ person, onJobRemove, onEstablismentRemove }) {
               <p>Until: {place.endDate.toLocaleDateString()}</p>
 
               <button type="button">Edit</button>
-              <button type="button" onClick={() => onEstablismentRemove(place.id)}>Delete</button>
+              <button
+                type="button"
+                onClick={() => onEstablismentRemove(place.id)}
+              >
+                Delete
+              </button>
             </div>
           );
         })}
