@@ -4,7 +4,7 @@ import "../styles/preview.css";
 
 // eslint-disable-next-line react/prop-types
 
-function DetailsDisplay({ person, onJobRemove }) {
+function DetailsDisplay({ person, onJobRemove, onEstablismentRemove }) {
   return (
     <div className="cv">
       <header className="header">
@@ -55,8 +55,11 @@ function DetailsDisplay({ person, onJobRemove }) {
           return (
             <div key={place.id}>
               <h1>{place.name}</h1>
-              <p>From: {place.startDate}</p>
-              <p>Until: {place.endDate}</p>
+              <p>From: {place.startDate.toLocaleDateString()}</p>
+              <p>Until: {place.endDate.toLocaleDateString()}</p>
+
+              <button type="button">Edit</button>
+              <button type="button" onClick={() => onEstablismentRemove(place.id)}>Delete</button>
             </div>
           );
         })}

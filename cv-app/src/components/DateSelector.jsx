@@ -7,12 +7,15 @@ function DateSelector({
   endDate,
   handleEndChange,
   handleStartChange,
+  startName,
+  endName
 }) {
   return (
     <div className="dates">
       <div>
         Start Date:
         <ReactDatePicker
+          name={startName}
           selected={startDate}
           onChange={handleStartChange}
           dateFormat={"dd/MM/yyyy"}
@@ -21,6 +24,7 @@ function DateSelector({
       <div>
         End Date:
         <ReactDatePicker
+          name={endName}
           selected={endDate}
           onChange={handleEndChange}
           dateFormat={"dd/MM/yyyy"}

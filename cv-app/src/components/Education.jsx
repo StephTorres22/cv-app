@@ -6,12 +6,10 @@ id="startDate" */
 
 /* eslint-disable react/prop-types */
 function EducationalEstablishment({
+  establisment,
   handleEstablishmentChange,
-  place,
   handleClick,
   startChange,
-  startDate,
-  endDate,
   endChange,
 }) {
   return (
@@ -19,28 +17,32 @@ function EducationalEstablishment({
       <form action="" className="forms">
         <input
           type="text"
+          name="place"
           className=""
           placeholder="Establishment"
-          value={place}
+          value={establisment.place}
           onChange={handleEstablishmentChange}
         />
         <DateSelector
-          startDate={startDate}
-          endDate={endDate}
+          endName="endDate"
+          startName="startDate"
+          startDate={establisment.startDate}
+          endDate={establisment.endDate}
           handleStartChange={startChange}
           handleEndChange={endChange}
         />
       </form>
       <div className="preview">
-        {place !== '' && (
+        {establisment.place !== "" && (
           <div className="preview-dates">
             <p>
-              {startDate.toLocaleDateString()} - {endDate.toLocaleDateString()}
+              {establisment.startDate.toLocaleDateString()} -{" "}
+              {establisment.endDate.toLocaleDateString()}
             </p>
           </div>
         )}
         <p>
-          <u>{place}</u>
+          <u>{establisment.place}</u>
         </p>
       </div>
       <button type="button" onClick={handleClick}>

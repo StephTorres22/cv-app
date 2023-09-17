@@ -16,6 +16,7 @@ import EducationalEstablishment from "./components/Education";
 import DetailsDisplay from "./components/Display";
 
 function App() {
+  /* PERSON STATE */
   const [person, setPerson] = useState({
     firstName: "",
     surName: "",
@@ -40,25 +41,20 @@ function App() {
     setPerson(updatedPerson);
   }
 
-  //const [activeIndex, setActiveIndex] = useState(2);
+  /* JOB STATES */
+  const initailJob = {
+    jobPlace: defaultValue,
+    jobTitle: defaultValue,
+    jobDescription: defaultValue,
+    jobStart: defaultDate,
+    jobEnd: defaultDate,
+  };
 
-  /* JOB STATE */
-  const [jobPlace, setJobPlace] = useState(defaultValue);
-  const [jobTitle, setJobTitle] = useState(defaultValue);
-  const [jobDescription, setJobDesrciption] = useState(defaultValue);
-  const [jobStart, setJobStart] = useState(defaultDate);
-  const [jobEnd, setJobEnd] = useState(defaultDate);
+  const [job, setJob] = useState(initailJob);
 
-  function jobPlaceChange(e) {
-    setJobPlace(e.target.value);
-  }
-
-  function jobTitleChange(e) {
-    setJobTitle(e.target.value);
-  }
-
-  function jobDescriptionChange(e) {
-    setJobDesrciption(e.target.value);
+  function handleJobInfoChange(e) {
+    const updatedJob = { ...job, [e.target.name]: e.target.value };
+    setJob(updatedJob);
   }
 
   function addJob() {
@@ -67,10 +63,18 @@ function App() {
       jobs: person.jobs.toSpliced(
         0,
         0,
-        new Job(jobPlace, jobTitle, jobDescription, jobStart, jobEnd, uuidv4())
+        new Job(
+          job.jobPlace,
+          job.jobTitle,
+          job.jobDescription,
+          job.jobStart,
+          job.jobEnd,
+          uuidv4()
+        )
       ),
     };
     setPerson(updatedPerson);
+    setJob(initailJob);
     console.log(updatedPerson, person);
   }
 
@@ -83,12 +87,22 @@ function App() {
   }
 
   /* ESTABLISHMENT STATE */
-  const [estabPlace, setEstabPlace] = useState(defaultValue);
-  const [estabStart, setEstabStart] = useState(defaultDate);
-  const [estabEnd, setEstabEnd] = useState(defaultDate);
 
-  function establishmentChange(e) {
-    setEstabPlace(e.target.value);
+  const initialEstablisment = {
+    place: defaultValue,
+    qualifications: [],
+    startDate: defaultDate,
+    endDate: defaultDate,
+  };
+
+  const [establishment, setEstablisment] = useState(initialEstablisment);
+
+  function handleEstablishmentChange(e) {
+    const updatedEstablisment = {
+      ...establishment,
+      [e.target.name]: e.target.value,
+    };
+    setEstablisment(updatedEstablisment);
   }
 
   function addEstablishment() {
@@ -97,11 +111,25 @@ function App() {
       establishments: person.establishments.toSpliced(
         0,
         0,
-        new Establishment(estabPlace, estabStart, estabEnd, uuidv4())
+        new Establishment(
+          establishment.place,
+          establishment.startDate,
+          establishment.endDate,
+          uuidv4()
+        )
       ),
     };
     setPerson(updatedPerson);
+    setEstablisment(initialEstablisment);
     console.log(person);
+  }
+
+  function removeEstablishment(id) {
+    const newEstablisments = person.establishments.filter(
+      (place) => place.id !== id
+    );
+    const updatedPerson = { ...person, establishments: newEstablisments };
+    setPerson(updatedPerson);
   }
 
   return (
@@ -120,33 +148,47 @@ function App() {
         </Collapsable>
         <Collapsable title="Professional Experience">
           <ProfessionalExperience
-            jobPlace={jobPlace}
-            handlePlaceChange={jobPlaceChange}
-            title={jobTitle}
-            handleTitleChange={jobTitleChange}
-            description={jobDescription}
-            handleDescriptionChange={jobDescriptionChange}
-            startDate={jobStart}
-            startChange={(date) => setJobStart(new Date(date))}
-            endDate={jobEnd}
-            endChange={(date) => setJobEnd(new Date(date))}
+            job={job}
+            startChange={(date) => {
+              const updatedJob = { ...job, jobStart: new Date(date) };
+              setJob(updatedJob);
+            }}
+            endChange={(date) => {
+              const updatedJob = { ...job, jobEnd: new Date(date) };
+              setJob(updatedJob);
+            }}
             onClick={addJob}
+            onChange={handleJobInfoChange}
           />
         </Collapsable>
         <Collapsable title="Education">
           <EducationalEstablishment
-            handleEstablishmentChange={establishmentChange}
-            place={estabPlace}
-            startDate={estabStart}
-            startChange={(date) => setEstabStart(new Date(date))}
-            endDate={estabEnd}
-            endChange={(date) => setEstabEnd(new Date(date))}
+            handleEstablishmentChange={handleEstablishmentChange}
+            establisment={establishment}
+            startChange={(date) => {
+              const updatedEstablisment = {
+                ...establishment,
+                startDate: new Date(date),
+              };
+              setEstablisment(updatedEstablisment);
+            }}
+            endChange={(date) => {
+              const updatedEstablisment = {
+                ...establishment,
+                endDate: new Date(date),
+              };
+              setEstablisment(updatedEstablisment);
+            }}
             handleClick={addEstablishment}
           />
         </Collapsable>
       </div>
       <div className="right">
-        <DetailsDisplay person={person} onJobRemove={removeJob} />
+        <DetailsDisplay
+          person={person}
+          onJobRemove={removeJob}
+          onEstablismentRemove={removeEstablishment}
+        />
       </div>
     </div>
   );

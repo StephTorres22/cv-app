@@ -3,17 +3,13 @@ import "./styles/forms.css";
 
 /* eslint-disable react/prop-types */
 function ProfessionalExperience({
-  jobPlace,
-  handlePlaceChange,
-  title,
-  handleTitleChange,
-  description,
-  handleDescriptionChange,
-  startDate,
+  job,
+
   startChange,
-  endDate,
+
   endChange,
   onClick,
+  onChange,
 }) {
   return (
     <div className="forms-container">
@@ -21,53 +17,56 @@ function ProfessionalExperience({
         <input
           type="text"
           className=""
-          name=""
+          name="jobPlace"
           id=""
           placeholder="Company"
-          value={jobPlace}
-          onChange={handlePlaceChange}
+          value={job.jobPlace}
+          onChange={onChange}
         />
         <input
           type="text"
-          name=""
+          name="jobTitle"
           id=""
           className=""
           placeholder="Job title"
-          value={title}
-          onChange={handleTitleChange}
+          value={job.jobTitle}
+          onChange={onChange}
         />
         <textarea
           rows={4}
           style={{ resize: "none" }}
-          name=""
+          name="jobDescription"
           id=""
           className=""
           placeholder="Descritption"
-          value={description}
-          onChange={handleDescriptionChange}
+          value={job.jobDescription}
+          onChange={onChange}
         />
         <DateSelector
-          startDate={startDate}
-          endDate={endDate}
+          startName="jobStart"
+          endName="jobEnd"
+          startDate={job.jobStart}
+          endDate={job.jobEnd}
           handleEndChange={endChange}
           handleStartChange={startChange}
         />
       </form>
       <div className="preview">
-        {jobPlace !== '' && (
+        {job.jobPlace !== "" && (
           <div className="preview-dates">
             <p>
-              {startDate.toLocaleDateString()} - {endDate.toLocaleDateString()}
+              {job.jobStart.toLocaleDateString()} -{" "}
+              {job.jobEnd.toLocaleDateString()}
             </p>
           </div>
         )}
         {/* has a little bug, that if only one charater is introduced date and place show up then disappear */}
         <p>
-          <u>{title}</u>
+          <u>{job.jobTitle}</u>
         </p>
-        <p>{jobPlace}</p>
+        <p>{job.jobPlace}</p>
 
-        <p>{description}</p>
+        <p>{job.jobDescription}</p>
       </div>
       <button type="button" onClick={onClick}>
         Add
