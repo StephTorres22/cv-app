@@ -27,14 +27,19 @@ function DetailsDisplay({ person, onJobRemove, onEstablismentRemove }) {
           return (
             <div className="professional" key={job.id}>
               <div className="professional-detatils">
-                <p>{job.jobStart.toLocaleDateString()} -</p>
-                <p>{job.jobEnd.toLocaleDateString()}</p>
+                <span>{job.jobStart.toLocaleDateString()} -</span>
+                <span>{job.jobEnd.toLocaleDateString()}</span>
 
                 <p>{job.jobPlace}</p>
                 <p>{job.jobTitle}</p>
-
-                <button type="button">Edit</button>
-                <button type="button" onClick={() => onJobRemove(job.id)}>
+              </div>
+              <div className="professional-description">
+                <p>{job.jobDescription}</p>
+                <button
+                  type="button"
+                  className="hidden-button"
+                  onClick={() => onJobRemove(job.id)}
+                >
                   {/* for some reason need () =>, stops a bubbling call straight away..? 
                       also stop id becoming a syntheticevent(whatever that is) and actually using 
                       the correct string id for each indiviual job instance. 
@@ -42,9 +47,6 @@ function DetailsDisplay({ person, onJobRemove, onEstablismentRemove }) {
                       into app, also remove is lifted and passed down as prop */}
                   Delete
                 </button>
-              </div>
-              <div className="professional-description">
-                <p>{job.jobDescription}</p>
               </div>
             </div>
           );
@@ -58,7 +60,6 @@ function DetailsDisplay({ person, onJobRemove, onEstablismentRemove }) {
               <p>From: {place.startDate.toLocaleDateString()}</p>
               <p>Until: {place.endDate.toLocaleDateString()}</p>
 
-              <button type="button">Edit</button>
               <button
                 type="button"
                 onClick={() => onEstablismentRemove(place.id)}

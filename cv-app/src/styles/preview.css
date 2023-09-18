@@ -2,26 +2,25 @@
   min-width: 50rem;
   min-height: 100vh;
   border: solid black 1px;
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
   margin-top: 0;
-  width: 100%;
+  width: 93%;
+  align-self: center;
   min-height: 15vh;
   background-color: aqua;
   display: flex;
   justify-content: space-between;
+  padding: 0;
+  border-bottom: solid black 1px;
 }
 .header .header-left,
 .header .header-right {
   padding-top: 2rem;
-}
-.header .header-left {
-  padding-left: 2rem;
-}
-
-.header .header-right {
-  padding-right: 2rem;
 }
 
 .about {
@@ -45,10 +44,21 @@
   justify-content: space-between;
 }
 
-.professional-details{
+.professional-details {
   grid-area: details;
 }
 
-.professional-description{
+.professional-description {
   grid-area: description;
 }
+
+.hidden-button {
+  opacity: 0;
+  transition: opacity 400ms ease-out;
+}
+
+.professional:hover .hidden-button {
+  opacity: 1;
+  transition: opacity 400ms ease-out;
+}
+
