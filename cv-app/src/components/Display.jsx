@@ -52,16 +52,17 @@ function DetailsDisplay({ person, onJobRemove, onEstablismentRemove }) {
           );
         })}
       </section>
-      <section className="education">
+      <section className="education-container">
         {person.establishments.map((place) => {
           return (
-            <div key={place.id}>
+            <div className="education" key={place.id}>
               <h1>{place.name}</h1>
               <p>From: {place.startDate.toLocaleDateString()}</p>
               <p>Until: {place.endDate.toLocaleDateString()}</p>
 
               <button
                 type="button"
+                className="hidden-button"
                 onClick={() => onEstablismentRemove(place.id)}
               >
                 Delete

@@ -5,6 +5,7 @@
   margin-top: 4rem;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 0 50px -4px lightblue;
 }
 
 .header {
@@ -57,8 +58,8 @@
   transition: opacity 400ms ease-out;
 }
 
-.professional:hover .hidden-button {
+.professional:hover .hidden-button,
+.education:hover .hidden-button {
   opacity: 1;
   transition: opacity 400ms ease-out;
 }
-
